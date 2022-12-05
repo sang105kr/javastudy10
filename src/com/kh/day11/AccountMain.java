@@ -161,6 +161,6 @@ public class AccountMain {
         return i;
       }
     }
-    return NOT_FOUND;
+    return -1;
   }
 }
