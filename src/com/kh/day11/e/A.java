@@ -1,8 +1,9 @@
 package com.kh.day11.e;
 
 public class A {
-  void abc(int m) {
+  int abc(int m) {
     m = 8;
+    return m;
   }
 
   void bcd(int[] n) {
