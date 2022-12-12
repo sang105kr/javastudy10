@@ -8,16 +8,18 @@ import java.util.Comparator;
 public class MyComparator1 implements Comparator {
   @Override
   public int compare(Object o1, Object o2) {
-    int result  = 0 ;
+//    int result  = 0 ;
 
     Person p1 = (Person)o1;
     Person p2 = (Person)o2;
 
-    if (p1.getAge() > p2.getAge()) {
-      result = 1;
-    } else if (p1.getAge() < p2.getAge()) {
-      result = -1;
-    }
-    return result;
+//    Integer value1 = (Integer)(p1.getAge());
+
+//    if (p1.getAge() > p2.getAge()) {
+//      result = 1;
+//    } else if (p1.getAge() < p2.getAge()) {
+//      result = -1;
+//    }
+    return ((Integer)(p1.getAge())).compareTo(p2.getAge());
   }
 }
