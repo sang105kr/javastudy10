@@ -2,7 +2,7 @@ package com.kh.day14.a;
 
 import java.util.Objects;
 
-public class Person implements Cloneable {
+public class Person implements Cloneable{
   String name;
   int age;
 
