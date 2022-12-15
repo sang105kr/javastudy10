@@ -13,7 +13,7 @@ public class Dictionary {
   public static final int MAX_SIZE = 5;     // 저장할수 있는 단어 최대 갯수
   
   public Dictionary() {
-    init(); //데이터 초기화
+    //init(); //데이터 초기화
   }
 
   private void init() {
@@ -172,6 +172,9 @@ public class Dictionary {
       String word = (String)obj;
       list.add(word);
     }
+    if (list.size() == 0) {
+      throw new DictionaryException("색인 정보가 없습니다!");
+    }
     return list;
   }
 
@@ -208,7 +211,6 @@ public class Dictionary {
     List<String> list = new ArrayList<String>(treeMap.keySet());
     result.add(list);
 
-    System.out.println(result);
     return result;
   }
 
