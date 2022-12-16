@@ -1,17 +1,22 @@
 package com.kh.dic;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 /**
  * 영한사전 구현
+ * @author 작성자명
+ * @version 버전정보
+ *
  */
-public class Dictionary {
+public class Dictionary implements DictionaryIf {
 
   private TreeMap data = new TreeMap<>();
   public static final int MAX_SIZE = 5;     // 저장할수 있는 단어 최대 갯수
-  
+
+
+  /**
+   * 기본 생성자
+   */
   public Dictionary() {
     //init(); //데이터 초기화
   }
@@ -28,8 +33,10 @@ public class Dictionary {
    * 신규 단어 추가
    * @param word  단어
    * @param meaning 뜻
-   */
-  public void put(String word,String meaning) {
+   *
+   * */
+  @Override
+  public void put(String word, String meaning) {
     //1) 단어수 초과 체크
     if(data.size() == MAX_SIZE) {
 //      System.out.println("최대 5개단어만 저장할 수 있습니다");
@@ -42,7 +49,7 @@ public class Dictionary {
 //      return;
       throw new DictionaryException(word + " 단어는 이미 등록되었습니다.");
     }
-    this.data.put(word, meaning);
+    this.data.put(word.toLowerCase(), meaning);
   }
 
   /**
@@ -50,7 +57,10 @@ public class Dictionary {
    * @param word 단어
    * @return 단어,뜻
    */
+  @Override
   public Map<String,String> findByWord(String word) {
+    word = word.toLowerCase();
+
     Map<String,String> map = new HashMap<>();
     String meaning = (String)(data.get(word));
     //1) 일치하는 단어를 찾은 경우
@@ -115,7 +125,9 @@ public class Dictionary {
    * @param word 단어
    * @param meaning 뜻
    */
+  @Override
   public void update(String word, String meaning) {
+    word = word.toLowerCase();
     if (data.replace(word, meaning) == null) {
       throw new DictionaryException("검색하고자 하는 단어가 없습니다.");
     }
@@ -125,7 +137,9 @@ public class Dictionary {
    * 삭제
    * @param word 단어
    */
+  @Override
   public void delete(String word) {
+    word = word.toLowerCase();
     if (data.remove(word) == null) {
       throw new DictionaryException("검색하고자 하는 단어가 없습니다.");
     }
@@ -136,6 +150,7 @@ public class Dictionary {
    * @param howToSort 소트방법 : 1.오름차순 2.내림차순
    * @return 단어장
    */
+  @Override
   public Map<String,String> list(int howToSort) {
     Map<String,String> map = null;
 
@@ -157,7 +172,11 @@ public class Dictionary {
    * @param ch 초성문자
    * @return   단어들
    */
+  @Override
   public List<String> index(char ch) {
+
+    ch = Character.toLowerCase(ch);
+
     List<String> list = new ArrayList<>();
     //단어만 추출
     Set set = data.keySet();
@@ -182,6 +201,7 @@ public class Dictionary {
    * 통계
    * @return 단어갯수, 문자열길이가 가장긴 단어, 문자열길이 내림차순
    */
+  @Override
   public List<Object> statistics() {
 
     List<Object> result = new ArrayList<>();
